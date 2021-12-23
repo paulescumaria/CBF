@@ -1,8 +1,12 @@
 import '../Styles/App.css';
+import Login from '../Pages/Login'
+
 
 function App() {
   return (
-    <p>Works!</p>
+    <div>
+      <Login />
+    </div>
   );
 }
 
