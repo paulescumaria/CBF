@@ -13,5 +13,5 @@ export const modifyRecipe = async (data) => {
 }
 
 export const deleteRecipe = async (data) => {
-    return await axios.delete("/api/removerecipe", data)
+    return await axios.post("/api/removerecipe", data)
 }
