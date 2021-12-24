@@ -82,13 +82,17 @@ function Recipes () {
        return {"id":recipeId, "title":recipeTitle, "time":recipeTime, "ingredients":recipeIngredients, "prepare": recipePrepare};
     }
 
+    const getImageById = (id) => {
+        return carbonara;
+    }
+
     return (
     <Box className="cardPage" sx={{ flexGrow: 1 }}>
          <Navbar />
         <Grid className="filterBox" container direction="row" justifyContent="center" alignItems="flex-start">  
         <br></br>
         <br></br>              
-             <TextField sx={{ input: { color: 'white' }}} InputLabelProps={{style : {color : 'white'} }} onChange={getTitle} id="title" label="Title Search" value={title} required /><br></br>
+             <TextField sx={{ input: { color: 'white' }}} InputLabelProps={{style : {color : 'white'} }} onChange={getTitle} id="title" label="Find a recipe" value={title} required /><br></br>
              {localStorage.getItem('isAdmin') === "true" && clickCount === 0 ? <Button onClick={adminMode} variant="contained" color={"success"}> {"Edit Mode"}</Button> : ""}
              {localStorage.getItem('isAdmin') === "true" && clickCount === 1 ? <Button onClick={adminMode} variant="contained" color={"error"}> {"Exit Edit Mode"} </Button> : ""}
              {localStorage.getItem('isAdmin') === "true" && clickCount === 1 ? <Button onClick={newRecipe} variant="contained" color="success">New Recipe <AddCircleIcon /></Button> :""}
@@ -104,7 +108,7 @@ function Recipes () {
             }
         </Grid>
         <Grid className="filterBox" container direction="row" justifyContent="center" alignItems="flex-start">
-             <ScreenRecipe openWindow={showRecipe} closeWindow={setShowRecipe} recipeid={idScreen} title={titleScreen} time={timeScreen} ingredients={ingredientsScreen} prepare={prepareScreen} screenType={screenMode}/>
+             <ScreenRecipe openWindow={showRecipe} closeWindow={setShowRecipe} recipeid={idScreen} title={titleScreen} time={timeScreen} ingredients={ingredientsScreen} prepare={prepareScreen} insertedImage={getImageById(idScreen)} screenType={screenMode}/>
         </Grid>
     </Box>
     )

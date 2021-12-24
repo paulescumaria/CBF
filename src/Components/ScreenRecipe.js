@@ -18,6 +18,7 @@ function ScreenRecipe (props) {
     const [time, setTime] = useState(props.time)
     const [ingredients, setIngredients] = useState(props.ingredients)
     const [prepare, setPrepare] = useState(props.prepare)
+    const [insertedImage, setInsertedImage] = useState(props.insertedImage)
     const screenType = props.screenType
 
     useEffect(() => {
@@ -26,6 +27,7 @@ function ScreenRecipe (props) {
         setTime(props.time);
         setIngredients(props.ingredients);
         setPrepare(props.prepare);
+        setInsertedImage(props.insertedImage);
     }, [props])
 
     const handleClose = () => {
@@ -88,6 +90,10 @@ function ScreenRecipe (props) {
         })
     }
 
+    const selectedImage = (e) => {
+        console.log(e.target.files[0]);
+    }
+
     return (
     <div>
     <Dialog open={props.openWindow} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
@@ -123,6 +129,12 @@ function ScreenRecipe (props) {
                 <TextareaAutosize className="screen-recipe-fields" onChange={handlePrepare} maxRows={4} disabled placeholder="Prepare Steps" value={prepare} required/> :
                 <TextareaAutosize className="screen-recipe-fields" onChange={handlePrepare} maxRows={4} placeholder="Prepare Steps" value={prepare} required/>
             }
+            {
+                screenType === 0 ?
+                "":
+                <input type="file" onChange={selectedImage}/>
+            }
+            <img src={insertedImage} alt=""/>
          </Grid>
         </DialogContent>
         <DialogActions>

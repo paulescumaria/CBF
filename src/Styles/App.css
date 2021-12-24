@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .container {
@@ -7,28 +8,35 @@
 }
 
 .nav {
-  padding: 0 40px 0 0;
-  max-width: 300px;
-}
-.nav li {
-  list-style: none;
-  padding: 1rem;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
-.nav li a {
+.burger-menu ul {
+  background-color: #003049;
+}
+
+.link-tag {
   color: #EAE2B7;
   text-decoration: none;
 }
 
-img, .image {
+.image {
   padding: 10px;
   width: 80px;
 }
 
+.card {
+  padding: 5px;
+}
+
 .cardPage {
-  background-color: #003049;
   width: 100%;
   height: 100vh;
+  background-image: url("../media/RecipeBack.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
 }
 
 .filterBox {
@@ -43,8 +51,20 @@ img, .image {
   margin: 0 0 10px 0;
 }
 
+.background-home {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../media/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-height: 500px) {
   
+  .cardPage {
+    height: 100%;
+  }
+
 }
 
