@@ -15,19 +15,27 @@ function Login() {
     
  
     const getData = (e) => {
-        login({
-            'userEmail': email,
-            'userPassword': btoa(password)
-        }).then((result) => {
-            if (result.data.length === 0) {
-               alert("User not found!")
-            } else {
-                localStorage.setItem('userEmail', result.data.userEmail)
-                localStorage.setItem('userPassword', result.data.userPassword)
-                localStorage.setItem('isAdmin', result.data.isAdmin)
-                navigate("/home")
-            }
-        })
+        if (email !== "" && password !== "") {
+            login({
+                'userEmail': email,
+                'userPassword': btoa(password)
+            }).then((result) => {
+                if (result.data !== null) {
+                    if (result.data.length === 0) {
+                        alert("User not found !")
+                     } else {
+                         localStorage.setItem('userEmail', result.data.userEmail)
+                         localStorage.setItem('userPassword', result.data.userPassword)
+                         localStorage.setItem('isAdmin', result.data.isAdmin)
+                         navigate("/home")
+                     }
+                } else {
+                    alert("Email or password incorrect !")
+                }
+            })
+        } else {
+            alert("Email and password required !");
+        }
     }
 
 

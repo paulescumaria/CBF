@@ -13,7 +13,7 @@ import { deleteRecipe } from "../Services/recipe.service";
 
 
 function ScreenRecipe (props) {
-    const [id, setId] = useState("");
+    const [id, setId] = useState(props.recipeid);
     const [title, setTitle] = useState(props.title)
     const [time, setTime] = useState(props.time)
     const [ingredients, setIngredients] = useState(props.ingredients)
@@ -36,32 +36,42 @@ function ScreenRecipe (props) {
     };
 
     const saveRecipe = (e) => {
-        newRecipe({
-            "title": title,
-            "time": time,
-            "ingredients": ingredients,
-            "prepareSteps": prepare
-        }).then((result) => {
-            if (result.data !== null && result.data !== undefined) {
-                alert("Reteta creata");
-                handleClose();
-            }
-        })
+        if (title !== "" && time !== "" && ingredients !== "" && prepare !== "" &&
+            title !== undefined && time !== undefined && ingredients !== undefined && prepare !== undefined) {
+            newRecipe({
+                "title": title,
+                "time": time,
+                "ingredients": ingredients,
+                "prepareSteps": prepare
+            }).then((result) => {
+                if (result.data !== null && result.data !== undefined) {
+                    alert("Recipe created !");
+                    handleClose();
+                }
+            })
+        } else {
+            alert("All the fields are required !");
+        }
     }
 
     const modifyRecipes = (e) => {
-        modifyRecipe({
-            "id": id,
-            "title": title,
-            "time": time,
-            "ingredients": ingredients,
-            "prepareSteps": prepare
-        }).then((result) => {
-            if (result.data !== null && result.data !== undefined) {
-                alert("Reteta modificata");
-                handleClose();
-            }
-        })
+        if (id !== "" && title !== "" && time !== "" && ingredients !== "" && prepare !== "" &&
+            id!== undefined && title !== undefined && time !== undefined && ingredients !== undefined && prepare !== undefined) {
+            modifyRecipe({
+                "id": id,
+                "title": title,
+                "time": time,
+                "ingredients": ingredients,
+                "prepareSteps": prepare
+            }).then((result) => {
+                if (result.data !== null && result.data !== undefined) {
+                    alert("Recipe modified !");
+                    handleClose();
+                }
+            })
+        } else {
+            alert("All fields need to be filled !")
+        }
     }
 
     const handleTitle = (e) => {
@@ -81,17 +91,20 @@ function ScreenRecipe (props) {
     }
 
     const deleteScreen = (e) => {
-        deleteRecipe({"id": id}).then((result) => {
-
-            if (result.data !== null && result.data !== undefined) {
-                alert("Reteta stearsa");
-               window.location.reload();
-            }
-        })
+        if (id !== "" && id !== undefined) {
+            deleteRecipe({"id": id}).then((result) => {
+                if (result.data !== null && result.data !== undefined) {
+                    alert("Recipe deleted !");
+                   window.location.reload();
+                }
+            })   
+        } else {
+            alert("You need to select a card before to delete !")
+        }
     }
 
     const selectedImage = (e) => {
-        console.log(e.target.files[0]);
+        alert(e.target.files[0].name);
     }
 
     return (
