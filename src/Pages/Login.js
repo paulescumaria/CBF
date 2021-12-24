@@ -3,22 +3,33 @@ import { TextField, Button, Grid, Avatar } from '@mui/material';
 import '../Styles/App.css';
 import { LockClockOutlined } from '@mui/icons-material';
 import { login } from '../Services/login.service';
+import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
     const avatarStyle = {backgroundColor: '#1bbd7e'}
 
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
     
+ 
     const getData = (e) => {
         login({
             'userEmail': email,
             'userPassword': btoa(password)
         }).then((result) => {
-           console.log(result)
+            if (result.data.length === 0) {
+               alert("User not found!")
+            } else {
+                localStorage.setItem('userEmail', result.data.userEmail)
+                localStorage.setItem('userPassword', result.data.userPassword)
+                localStorage.setItem('isAdmin', result.data.isAdmin)
+                navigate("/home")
+            }
         })
     }
+
 
     const getEmail = (e) => {
           setEmail(e.target.value)  
