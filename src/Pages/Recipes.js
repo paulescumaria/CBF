@@ -7,8 +7,9 @@ import { Grid, Box, TextField, Button } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ScreenRecipe from "../Components/ScreenRecipe";
 import Navbar from '../Components/Navbar';
+import { useNavigate } from "react-router-dom";
 
-function Recipes () {
+function Recipes (props) {
     const [title, setTitle] = useState("")
     const [recipeList, setRecipe] = useState([])
     const [clickCount, setClickCount] = useState(0)
@@ -19,15 +20,21 @@ function Recipes () {
     const [timeScreen, setTimeScreen] = useState("")
     const [ingredientsScreen, setIngredientsScreen] = useState("")
     const [prepareScreen, setPrepareScreen] = useState("")
+    const navigate = useNavigate()
 
     useEffect(() => {
+
+        if (props.manager === false) {
+            navigate("/");
+        }
+
         getRecipe().then(
            (result) => {
                setRecipe(result.data)
            }
         )
 
-    }, [])
+    }, [navigate, props.manager])
 
     const filter = () => {
         if (title === "") {
@@ -88,7 +95,7 @@ function Recipes () {
 
     return (
     <Box className="cardPage" sx={{ flexGrow: 1 }}>
-         <Navbar />
+         <Navbar stateManager={props.stateManager}/>
         <Grid className="filterBox" container direction="row" justifyContent="center" alignItems="flex-start">  
         <br></br>
         <br></br>              

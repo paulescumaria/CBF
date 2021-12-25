@@ -71,7 +71,7 @@
 
 @media only screen and (max-width: 500px) {
   .cardPage {
-    height: 100vh;
+    height: 100%;
   }
 
 }

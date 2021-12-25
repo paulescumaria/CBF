@@ -12,13 +12,14 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from '../media/logo.png';
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const logout = () => {
     localStorage.setItem('userEmail', "")
     localStorage.setItem('userPassword', "")
     localStorage.setItem('isAdmin', false)
+    props.stateManager(false)
   }
 
 

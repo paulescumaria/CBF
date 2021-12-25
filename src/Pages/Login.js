@@ -6,7 +6,7 @@ import { login } from '../Services/login.service';
 import { useNavigate } from 'react-router-dom';
 
 
-function Login() {
+function Login(props) {
     const avatarStyle = {backgroundColor: '#1bbd7e'}
 
     const navigate = useNavigate()
@@ -27,6 +27,7 @@ function Login() {
                          localStorage.setItem('userEmail', result.data[0].userEmail)
                          localStorage.setItem('userPassword', result.data[0].userPassword)
                          localStorage.setItem('isAdmin', JSON.stringify(result.data[0].isAdmin))
+                         props.stateManager(true)
                          navigate("/home")
                      }
                 } else {
