@@ -24,9 +24,9 @@ function Login() {
                     if (result.data.length === 0) {
                         alert("User not found !")
                      } else {
-                         localStorage.setItem('userEmail', result.data.userEmail)
-                         localStorage.setItem('userPassword', result.data.userPassword)
-                         localStorage.setItem('isAdmin', result.data.isAdmin)
+                         localStorage.setItem('userEmail', result.data[0].userEmail)
+                         localStorage.setItem('userPassword', result.data[0].userPassword)
+                         localStorage.setItem('isAdmin', JSON.stringify(result.data[0].isAdmin))
                          navigate("/home")
                      }
                 } else {
