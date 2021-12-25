@@ -11,7 +11,7 @@ function CardRecipe(props) {
     return (
     <Card className="card" sx={{ maxWidth: 300 }} onClick={e => props.onClick(e, props.recipeid, props.title, props.time, props.ingredients, props.prepare)}>
             <CardActionArea>
-                <CardMedia component="img" height="140" image={props.media} alt="Carbonara Paste" />
+                <CardMedia component="img" height="140" image={props.media} alt="Image with Food" />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">{props.title}</Typography>
                     <Typography variant="body2" color="text.secondary">{props.time}</Typography>
