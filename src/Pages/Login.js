@@ -27,6 +27,7 @@ function Login(props) {
                          localStorage.setItem('userEmail', result.data[0].userEmail)
                          localStorage.setItem('userPassword', result.data[0].userPassword)
                          localStorage.setItem('isAdmin', JSON.stringify(result.data[0].isAdmin))
+                         localStorage.setItem("isLogged", "true")
                          props.stateManager(true)
                          navigate("/home")
                      }

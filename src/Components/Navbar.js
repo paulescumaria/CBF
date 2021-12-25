@@ -19,6 +19,7 @@ function Navbar(props) {
     localStorage.setItem('userEmail', "")
     localStorage.setItem('userPassword', "")
     localStorage.setItem('isAdmin', false)
+    localStorage.setItem("isLogged", "false")
     props.stateManager(false)
   }
 

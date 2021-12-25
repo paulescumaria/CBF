@@ -7,8 +7,8 @@ import Recipes from './Recipes';
 
 
 function App() {
-  const [appManager, setAppManager] = useState(false)
-  
+  const [appManager, setAppManager] = useState(localStorage.getItem("isLogged") === "true" ? true : false)
+
   return (
     <BrowserRouter>
         <Routes>
